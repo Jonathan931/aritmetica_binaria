@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -111,13 +114,47 @@ public class Janela extends javax.swing.JDialog {
     }//GEN-LAST:event_saidaActionPerformed
 
     private void enterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterActionPerformed
-        if (this.opcoes.getSelectedIndex() == 0) {    //SOMA
-            System.out.println("SOMA");
+        
+        String num1 = valor1.getText();
+        String num2 = valor2.getText();
+        int tamanho = num1.length()-1;
+        int resto = 0;
+        StringBuilder resultado = new StringBuilder();
+        if (this.opcoes.getSelectedIndex() == 0) {//SOMA
+            int i = tamanho ;
+            int resultadoN;
+            while ( i >= 0 ){
+      
+                resultadoN = retornaZeroUm(num1.charAt(i)) + retornaZeroUm(num2.charAt(i)) + resto;
+                resto = 0;
+                if (resultadoN == 2){
+                    resultado.append('0');
+                    resto = 1; 
+                }else if( resultadoN == 3 ){
+                    resultado.append('1');
+                    resto = 1;
+                }else{
+                    resultado.append(Integer.toString(resultadoN));
+                }
+                
+                if ((i-1) == -1 && resto == 1){
+                    resultado.append('1');
+                }
+                i--;
+            }
+            saida.setText( resultado.reverse().toString());
+            
         } else {                                      //SUBTRAÇÃO
-            System.out.println("SUBTRAÇÃO");
+        
         }
     }//GEN-LAST:event_enterActionPerformed
 
+    public int retornaZeroUm( char num){
+        if (num == '1'){
+            return 1;
+        }
+        return 0;
+    }
     /**
      * @param args the command line arguments
      */
