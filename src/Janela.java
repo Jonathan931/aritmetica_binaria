@@ -119,9 +119,10 @@ public class Janela extends javax.swing.JDialog {
         String num2 = valor2.getText();
         int tamanho = num1.length()-1;
         int resto = 0;
+        int i = tamanho ;
         StringBuilder resultado = new StringBuilder();
         if (this.opcoes.getSelectedIndex() == 0) {//SOMA
-            int i = tamanho ;
+           
             int resultadoN;
             while ( i >= 0 ){
       
@@ -144,7 +145,31 @@ public class Janela extends javax.swing.JDialog {
             }
             saida.setText( resultado.reverse().toString());
             
-        } else {                                      //SUBTRAÇÃO
+        } else {//SUBTRAÇÃO
+            int resultadoN;
+            while ( i >= 0 ){
+      
+                resultadoN = retornaZeroUm(num1.charAt(i)) - retornaZeroUm(num2.charAt(i));
+                JOptionPane.showMessageDialog(null, resultadoN);
+                if (resultadoN == -1){
+                    resultado.append('1');
+                    int aux = i+1;
+                    while(aux >= 0 ){
+                        if (num1.charAt(aux) == '0' ){
+                            
+                        }
+                        aux --;
+                    }
+                 
+                }else{
+                    resultado.append(Integer.toString(resultadoN));
+                }
+                
+              
+                i--;
+            }
+            saida.setText( resultado.reverse().toString());
+            
         
         }
     }//GEN-LAST:event_enterActionPerformed
@@ -155,6 +180,7 @@ public class Janela extends javax.swing.JDialog {
         }
         return 0;
     }
+    
     /**
      * @param args the command line arguments
      */
