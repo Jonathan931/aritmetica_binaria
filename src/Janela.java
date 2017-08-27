@@ -150,17 +150,22 @@ public class Janela extends javax.swing.JDialog {
             while ( i >= 0 ){
       
                 resultadoN = retornaZeroUm(num1.charAt(i)) - retornaZeroUm(num2.charAt(i));
-                JOptionPane.showMessageDialog(null, resultadoN);
                 if (resultadoN == -1){
                     resultado.append('1');
-                    int aux = i+1;
+                    int aux = i;
+                    String  suaString= num1.toString();
+                    char[] novoChar = suaString.toCharArray();
                     while(aux >= 0 ){
                         if (num1.charAt(aux) == '0' ){
-                            
+                            novoChar[aux] = '1';
+                        }else{
+                             novoChar[aux] = '0';
+                             aux = -1;
                         }
                         aux --;
                     }
-                 
+                    num1 = String.copyValueOf(novoChar);
+                    
                 }else{
                     resultado.append(Integer.toString(resultadoN));
                 }
